@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section>
+  <h2 class="text-center mt-3">¡Sube archivos para clasificarlos!
+    <hr>
+  </h2>
+</section>
+
+{% if error %}
+<div role="alert">
+  {{ error }}
+</div>
+{% endif %}
+
+<div id="loader" hidden></div>
+
+<div class="container-fluid mt-5 d-flex justify-content-center">
+  <div class="row justify-content-center">
+    <div class="col">
+      <form action="{{ url_for('registarArchivo') }}" method="POST" onsubmit="showLoader()" autocomplete="off"
+        enctype="multipart/form-data">
+        <div class="card">
+          <h3 class="text-center">Clasificador</h3>
+          <div class="drop_box">
+            <header>
+              <h4 id="filename">Sube aqui tus archivos</h4>
+            </header>
+            <p>Archivos PDF</p>
+            <input type="file" name="archivo" hidden accept=".pdf" id="fileID">
+            <button type="button" class="btn" id="file_upload" onclick="onButtonClick()">Subir archivo</button>
+          </div>
+        </div>
+        <div class="form-group mb-5 text-center mt-5">
+          <button type="submit" class="btn btn-primary btn-sm">Enviar Archivo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="../static/js/loader.js" defer></script>
+{% endblock %}
